@@ -3,6 +3,6 @@ const profController = require('../controllers/profController');
 
 const router = express.Router();
 
-router.get('/professional', profController.getIndex);
+router.get('/', profController.getUser);
 
 module.exports = router;
