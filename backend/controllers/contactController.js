@@ -11,13 +11,13 @@ const getAllData = async (req, res, next) => {
 }
 
 const getContact = async (req, res, next) => {
-  const contectId = req.params.id;
+  const contactId = req.params.id;
   const result = await mongodb.getDb().collection('contacts').find();
   //console.log(result);
   result.toArray().then((lists) => {
-    if (contectId) {
-      console.log('Contact ID:', contectId);
-      const contact = lists.find((contact) => contact._id.toString() === contectId);
+    if (contactId) {
+      console.log('Contact ID:', contactId);
+      const contact = lists.find((contact) => contact._id.toString() === contactId);
       if (contact) {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(contact);
