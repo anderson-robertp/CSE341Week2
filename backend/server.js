@@ -6,7 +6,7 @@ const profRoute = require('./routes/profRoute');
 const contactRoute = require('./routes/contacts'); // Ensure this is correctly imported
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const port = process.env.port || 8080;
 
 app.use(cors()); // Enable CORS
 app
@@ -24,6 +24,6 @@ mongodb.initDb((err, mongodb) => {
     console.log(err);
   } else {
     app.listen(PORT);
-    console.log(`Connected to DB and listening on ${PORT}`);
+    console.log(`Connected to DB and listening on ${port}`);
   }
 });
