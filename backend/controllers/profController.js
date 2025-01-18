@@ -12,11 +12,11 @@ exports.getUser = (req, res, next) => {
 
 const getData = async (req, res, next) => {
     const result = await mongodb.getDb().collection('professional').find();
-    console.log(result);
+    //console.log(result);
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists[0]); // we just need the first one (the only one)
-      console.log(lists[0]);
+      //console.log(lists[0]);
     });
   };
   

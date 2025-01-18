@@ -1,14 +1,11 @@
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require('body-parser');
-require('dotenv').config();
-//const path = require('path');
-const profRoute = require('./routes/profRoute');
-//const profController = require('./controllers/profController');
-const app = express();
-//const mongoose = require('mongoose');
-const MongoClient = require('mongodb').MongoClient;
+const cors = require('cors');
 const mongodb = require('./db/connect');
+const profRoute = require('./routes/profRoute');
+const contactRoute = require('./routes/contacts'); // Ensure this is correctly imported
+
+const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(cors()); // Enable CORS
@@ -18,19 +15,15 @@ app
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-  .use('/professional', profRoute);
-
-//app.use('/professional', profRoute);
-//app.use('/api', profRoute);
-
-//app.get('/professional', profController.getUser);
+  .use('/professional', profRoute)
+  .use('/contacts', contactRoute); // Ensure this is correctly used
 
 // MongoDB Connection
 mongodb.initDb((err, mongodb) => {
-    if (err) {
-      console.log(err);
-    } else {
-      app.listen(PORT);
-      console.log(`Connected to DB and listening on ${PORT}`);
-    }
-  });
+  if (err) {
+    console.log(err);
+  } else {
+    app.listen(PORT);
+    console.log(`Connected to DB and listening on ${PORT}`);
+  }
+});
