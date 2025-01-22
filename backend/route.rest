@@ -1,1 +1,10 @@
 GET http://localhost:8080/contacts
+GET http://localhost:8080/contacts/{id}
+POST http://localhost:8080/contacts
+PUT http://localhost:8080/contacts/{id}
+DELETE http://localhost:8080/contacts/{id}
+GET https://cse341-1ptd.onrender.com/contacts
+GET https://cse341-1ptd.onrender.com/contacts/{id}
+POST https://cse341-1ptd.onrender.com/contacts
+PUT https://cse341-1ptd.onrender.com/contacts/{id}
+DELETE https://cse341-1ptd.onrender.com/contacts/{id}
