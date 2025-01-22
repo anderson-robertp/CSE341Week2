@@ -1,5 +1,6 @@
+const { response } = require('express');
 const mongodb = require('../db/connect');
-const {ObjectId} = require('mongodb').ObjectId;
+//const {ObjectId} = require('mongodb').ObjectId;
 
 const getAllData = async (req, res, next) => {
   const result = await mongodb.getDb().collection('contacts').find();
@@ -12,7 +13,7 @@ const getAllData = async (req, res, next) => {
 }
 
 const getContact = async (req, res, next) => {
-  const contactId = new ObjectId(req.params.id);
+  const contactId = req.params.id;
   const result = await mongodb.getDb().collection('contacts').find();
   //console.log(result);
   result.toArray().then((lists) => {
@@ -51,7 +52,7 @@ const createContact = async (req, res, next) => {
 };
 
 const updateContact = async (req, res, next) => {
-  const contactId = new ObjectId(req.params.id);
+  const contactId = req.params.id;
   const updatedContact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -59,7 +60,8 @@ const updateContact = async (req, res, next) => {
     faovriteColor: req.body.favoriteColor,
     birthday: req.body.birthday
   }
-  const result = await mongodb.getDb().collection('contacts').updateOne({ _id: mongodb.getPrimaryKey(contactId) }, { $set: updatedContact });
+  const result = await mongodb.getDb().collection('contacts').replaceOne({ _id: contactId }, updatedContact);
+  console.log(result); // for testing
   if (result.modifiedCount > 0) {
     res.status(204).json({ message: 'Contact updated successfully' });
   } else {
@@ -68,13 +70,13 @@ const updateContact = async (req, res, next) => {
 }; // to be implemented
 
 const deleteContact = async (req, res, next) => {
-  const contactId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().collection('contacts').deleteOne({ _id: mongodb.getPrimaryKey(contactId) });
+  const contactId = req.params.id;
+  const result = await mongodb.getDb().collection('contacts').deleteOne({ _id: contactId });
   console.log(result); // for testing
   if (result.deletedCount > 0) {
     res.status(200).json({ message: 'Contact deleted successfully' });
   } else {
-    res.status(500).json({ message: 'Error deleting contact' });
+    res.status(500).json(response.error || { message: 'Error deleting contact' });
   }
   //console.log(result); // for testing
 }; // to be implemented
