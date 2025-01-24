@@ -1,3 +1,34 @@
+GET http://localhost:8080/contacts
+
+###
+
+GET http://localhost:8080/contacts/678bf5d3c61a7c166448180b
+
+###
+
+POST http://localhost:8080/contacts HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Vash", "lastName":"Stampede", "email":"humanoid@typhoon.com", "favoriteColor":"Red", "birthday":"07/21/2455"
+}
+
+###
+
+PUT http://localhost:8080/contacts/679058f33a16bda5640e554c HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Shirou", "lastName":"Emiya", "email":"hero@justice.com", "favoriteColor":"Black", "birthday":"01/30/2004"
+}
+
+### 
+
+DELETE http://localhost:8080/contacts/67932493249ce4ac5b3642bf HTTP/1.1
+
+
+###
+
 GET https://cse341-1ptd.onrender.com/contacts
 
 ###
