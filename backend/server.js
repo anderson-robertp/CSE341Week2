@@ -3,20 +3,25 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongodb = require('./db/connect');
 const profRoute = require('./routes/profRoute');
-const contactRoute = require('./routes/contacts'); // Ensure this is correctly imported
+const contactRoute = require('./routes/contacts');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
 const port = process.env.port || 8080;
 
 app.use(cors()); // Enable CORS
-app
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // Swagger UI
+
+app // Main App
   .use(bodyParser.json())
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
   .use('/professional', profRoute)
-  .use('/contacts', contactRoute); // Ensure this is correctly used
+  .use('/contacts', contactRoute);
 
 // MongoDB Connection
 mongodb.initDb((err, mongodb) => {
