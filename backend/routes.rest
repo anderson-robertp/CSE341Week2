@@ -24,7 +24,7 @@ content-type: application/json
 
 ### 
 
-DELETE http://localhost:8080/contacts/67932493249ce4ac5b3642bf HTTP/1.1
+DELETE http://localhost:8080/contacts/679ee2a0565d44741bd6d980 HTTP/1.1
 
 
 ###
@@ -50,7 +50,11 @@ PUT http://cse341-1ptd.onrender.com/contacts/6793f775ccdf5e4915c44146 HTTP/1.1
 content-type: application/json
 
 {
-    "firstName":"Shirou", "lastName":"Emiya", "email":"hero@justice.com", "favoriteColor":"Black", "birthday":"01/30/2004"
+    "firstName":"Spike",
+     "lastName":"Spiegel",
+      "email":"cowboy@bebop.biz",
+       "favoriteColor":"Yellow",
+        "birthday":"09/26/2044"
 }
 
 ### 

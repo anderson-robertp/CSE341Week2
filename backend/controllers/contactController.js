@@ -98,7 +98,7 @@ const deleteContact = async (req, res, next) => {
   console.log(result); // for testing
 
   if (result.deletedCount > 0) {
-    res.status(200).json({ message: 'Contact deleted successfully' });
+    res.status(204).json({ message: 'Contact deleted successfully' });
   } else {
     res.status(500).json(response.error || { message: 'Error deleting contact' });
   }
