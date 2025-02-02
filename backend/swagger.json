@@ -5,10 +5,10 @@
     "description": "Project for CSE341",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-1ptd.onrender.com/contacts",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
